@@ -7,7 +7,7 @@ import HomeScreen from "./screens/HomeScreen";
 export default function App() {
   return (
     <View style={{flex:1}}>
-      <StatusBar style="auto" />
+      <StatusBar style="light" />
       <RootNav />
     </View>
   );

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { ActivityIndicator, FlatList, View, VirtualizedList } from "react-native";
 import { getAnimals } from "../api/APIZoo";
 import CardImage from "../components/CardImage";
-import atoms from "../constants/atoms";
+import { Indicator } from "../constants/atoms";
 
 const HomeScreen = () => {
   const [animals, setAnimals] = useState([]);
@@ -21,7 +21,7 @@ const HomeScreen = () => {
   }
   
   if(!animals || refreshing ){
-    return <ActivityIndicator size="large" color="white" style={atoms.loading} />
+    return <Indicator/>
   }
 
   // renders
