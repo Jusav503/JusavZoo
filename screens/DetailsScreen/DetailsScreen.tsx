@@ -24,7 +24,7 @@ const DetailsScreen = () => {
   const route = useRoute();
   const bottomSheetModalRef = useRef<BottomSheetModal>(null);
   const [isOpen, setIsOpen] = useState(false);
-  const snapPoints = useMemo(() => ["50%", "90%"], []);
+  const snapPoints = useMemo(() => ["60%", "65%"], []);
 
   const fetchAnimalDetails = () => {
     const r = route.params?.details;
@@ -34,7 +34,6 @@ const DetailsScreen = () => {
     fetchAnimalDetails();
   }, []);
   const {
-    id,
     active_time,
     animal_type,
     diet,
@@ -61,19 +60,13 @@ const DetailsScreen = () => {
 
   return (
     <GestureHandlerRootView>
-      <View
-        style={[
-          styles.container,
-          { backgroundColor: isOpen ? "#00000090" : "black" },
-        ]}
-      >
-        <Image
-          source={{ uri: image_link }}
-          style={atoms.imgMedium}
-          resizeMode="contain"
-        />
+      <View style={styles.container}>
         <TouchableOpacity onPress={pressOpenModal}>
-          <Text style={atoms.WT}>{name}</Text>
+          <Image
+            source={{ uri: image_link }}
+            resizeMode="contain"
+            style={[styles.imgMedium, { opacity: isOpen ? 0.2 : 1 }]}
+          />
         </TouchableOpacity>
 
         <BottomSheetModalProvider>
@@ -84,7 +77,102 @@ const DetailsScreen = () => {
             onDismiss={() => setIsOpen(false)}
           >
             <View style={styles.contentContainer}>
-              <Text>{id}</Text>
+              <Text style={{ fontSize: 20, fontWeight: "bold" }}>{name}</Text>
+              <Text style={{ color: "grey" }}>({latin_name})</Text>
+              <Text>Animal type: {animal_type}</Text>
+
+              <View style={{ marginTop: 6 }}>
+                <View style={styles.infoContent}>
+                  <Image
+                    source={{
+                      uri: "https://img.icons8.com/color/48/000000/weight-kg.png",
+                    }}
+                    style={styles.icon}
+                  />
+                  <Text style={{fontWeight: "bold"}}>Weight: </Text>
+                  <Text>
+                    min.{weight_min} | max. {weight_max}
+                  </Text>
+                </View>
+
+                <View style={styles.infoContent}>
+                  <Image
+                    source={{
+                      uri: "https://img.icons8.com/color/48/000000/length.png",
+                    }}
+                    style={styles.icon}
+                  />
+                  <Text style={{fontWeight: "bold"}}>Length(Inch): </Text>
+                  <Text numberOfLines={2} >
+                    min.{length_min} | max. {length_max}
+                  </Text>
+                </View>
+
+                <View style={styles.infoContent}>
+                  <Image
+                    source={{
+                      uri: "https://img.icons8.com/color/48/000000/blueberry.png",
+                    }}
+                    style={styles.icon}
+                  />
+                  <View style={{flexDirection:"row"}}>
+                    <Text style={{fontWeight: "bold"}}>Diet: </Text>
+                    <Text>{diet}</Text>
+                  </View>
+                </View>
+
+                <View style={styles.infoContent}>
+                  <Image
+                    source={{
+                      uri: "https://img.icons8.com/color/48/000000/world-map-continents.png",
+                    }}
+                    style={styles.icon}
+                  />
+                  <View style={{flexDirection:"row"}}>
+                    <Text style={{fontWeight: "bold"}}>Geo range: </Text>
+                    <Text>{geo_range}</Text>
+                  </View>
+                </View>
+
+                <View style={styles.infoContent}>
+                  <Image
+                    source={{
+                      uri: "https://img.icons8.com/color/48/000000/jungle.png",
+                    }}
+                    style={styles.icon}
+                  />
+                  <View style={{flexDirection:"row"}}>
+                    <Text style={{fontWeight: "bold"}}>Habitat: </Text>
+                    <Text>{habitat}</Text>
+                  </View>
+                </View>
+
+                <View style={styles.infoContent}>
+                  <Image
+                    source={{
+                      uri: "https://img.icons8.com/color/48/000000/heart-cross.png",
+                    }}
+                    style={styles.icon}
+                  />
+                  <View style={{flexDirection:"row"}}>
+                    <Text style={{fontWeight: "bold"}}>Lifespan: </Text>
+                    <Text>{lifespan} years</Text>
+                  </View>
+                </View>
+
+                <View style={styles.infoContent}>
+                  <Image
+                    source={{
+                      uri: "https://img.icons8.com/color/48/000000/alarm-clock--v1.png",
+                    }}
+                    style={styles.icon}
+                  />
+                  <View style={{flexDirection:"row"}}>
+                    <Text style={{fontWeight: "bold"}}>Active time: </Text>
+                    <Text>{active_time}</Text>
+                  </View>
+                </View>
+              </View>
             </View>
           </BottomSheetModal>
         </BottomSheetModalProvider>

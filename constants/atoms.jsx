@@ -7,8 +7,12 @@ const Indicator = () => {
 
 const atoms = StyleSheet.create({
   loading: { flex: 1, alignItems: "center", justifyContent: "center" },
-  WT: { color: "white" },
-  imgMedium: { width: "100%", height: 500 },
+  button:{
+    padding:10, 
+    backgroundColor: "grey",
+    borderRadius: 5,
+    alignSelf: "flex-start",
+  }
 });
 
 export { atoms, Indicator };
